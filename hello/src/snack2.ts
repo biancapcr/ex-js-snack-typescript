@@ -31,3 +31,62 @@ export type Dipendente = {
   // vincolato al type Contratto
   contratto: Contratto;
 };
+
+// =========================
+// SNACK 3
+// =========================
+
+// union type per il livello di esperienza del developer
+// sono ammessi solo questi tre valori
+export type LivelloEsperienza = "Junior" | "Mid" | "Senior";
+
+// ruolo specifico: developer
+// estende dipendente aggiungendo campi richiesti dallo snack
+export type Developer = Dipendente & {
+  // livello esperienza con scelte limitate
+  livelloEsperienza: LivelloEsperienza;
+
+  // array di linguaggi usati in azienda
+  // opzionale = può mancare del tutto
+  linguaggi?: string[];
+
+  // array di certificazioni
+  // può essere vuoto ma la proprietà esiste sempre
+  certificazioni: string[];
+};
+
+// ruolo specifico: project manager
+export type ProjectManager = Dipendente & {
+  // numero membri team gestito
+  // può essere null se non ha ancora un team assegnato
+  teamSize: number | null;
+
+  // budget annuale gestito
+  // opzionale = può mancare del tutto
+  budgetGestito?: number;
+
+  // array stakeholder principali
+  // può essere vuoto ma la proprietà esiste sempre
+  stakeholderPrincipali: string[];
+};
+
+// =========================
+// bonus: team
+// =========================
+
+export type Team = {
+  // nome del team
+  nome: string;
+
+  // progetto attuale
+  // può essere null se in attesa di assegnazione
+  progettoAttuale: string | null;
+
+  // budget assegnato: sempre presente
+  budget: number;
+
+  // tuple:
+  // - primo elemento: project manager
+  // - poi: uno o più developer (almeno 1)
+  membri: [ProjectManager, Developer, ...Developer[]];
+};
