@@ -3,6 +3,7 @@ import typescriptLogo from "./typescript.svg";
 import viteLogo from "/vite.svg";
 import { setupCounter } from "./counter.ts";
 import { stampaDato } from "./snack1.ts";
+import type { Dipendente } from "./snack2";
 
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   <div>
@@ -39,3 +40,17 @@ stampaDato(
     setTimeout(() => resolve("risolto!"), 1000);
   }),
 );
+// =========================
+// TEST SNACK 2
+// =========================
+const dip: Dipendente = {
+  nome: "Ambrogio",
+  cognome: "P.",
+  annoNascita: 1999,
+  sesso: "m",
+  anniDiServizio: [2020, 2021, 2023],
+  emailAziendale: "ambrogio@azienda.it",
+  contratto: "indeterminato",
+};
+
+console.log(dip);
